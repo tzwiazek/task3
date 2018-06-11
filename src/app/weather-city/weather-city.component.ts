@@ -20,7 +20,7 @@ export class WeatherCityComponent implements OnInit {
    this.randomCity = this.WeatherService.getRandomCity(3);
    setInterval(() => {
        this.randomCity = this.WeatherService.getRandomCity(3);
-   }, 3000);
+   }, 60000);
 
 
       for(let i=0;i<3;i++) {
