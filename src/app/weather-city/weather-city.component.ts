@@ -10,8 +10,6 @@ export class WeatherCityComponent implements OnInit {
   randomCity:any;
   temp:string;
   weather = [];
-  weatherDetails:any;
-  refresh:any;
   selectedCity:any;
 
 
@@ -22,8 +20,7 @@ export class WeatherCityComponent implements OnInit {
    this.randomCity = this.WeatherService.getRandomCity(3);
    setInterval(() => {
        this.randomCity = this.WeatherService.getRandomCity(3);
-       clearInterval(this.refresh);
-   }, 60000);
+   }, 3000);
 
 
       for(let i=0;i<3;i++) {
@@ -37,28 +34,8 @@ export class WeatherCityComponent implements OnInit {
       }
    }
 
-
-    onSelect(city:string): void {
+    onSelect(city:string) {
         this.selectedCity = city;
-
-        this.WeatherService.getWeather(this.selectedCity.name).subscribe(response => {
-            this.weatherDetails = response;
-
-            if (this.weatherDetails.query.results.channel.location.city == "Lodz") {
-                this.weatherDetails.query.results.channel.location.city = "Łódź";
-            }
-        });
-
-        this.refresh = setInterval(() => {
-            this.WeatherService.getWeather(this.selectedCity.name).subscribe(response => {
-                this.weatherDetails = response;
-
-                if (this.weatherDetails.query.results.channel.location.city == "Lodz") {
-                    this.weatherDetails.query.results.channel.location.city = "Łódź";
-                }
-            });
-        }, 10000);
-
+        this.WeatherService.getSelectedCity(this.selectedCity);
     }
 }
-
