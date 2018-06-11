@@ -1,11 +1,11 @@
-<div class="container">
-  <div class="box-3" *ngFor="let city of randomCity; index as i">
+<div class="container" *ngIf="weather[0] != undefined && weather[1] != undefined && weather[2] != undefined">
+  <div class="box-3" *ngFor="let city of weather">
     <div class="title">
       <p class="city">{{ city.name }}</p>
-      <img src="{{ weather[i].img }}" alt="weather-picture">
+      <img src="{{ city.img }}" alt="weather-picture">
     </div>
-    <p class="temp">Temperature: {{ weather[i].temp }}</p>
-    <p class="desc">Description: {{ weather[i].desc }}</p>
+    <p class="temp">Temperature: {{ city.temp }}</p>
+    <p class="desc">Description: {{ city.desc }}</p>
     <button type="button" class="btn" [class.selected]="city === selectedCity"
             (click)="onSelect(city)" routerLink="/detail/{{city.id}}">
       <a *ngIf="1">View</a>

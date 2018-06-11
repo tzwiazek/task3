@@ -1,4 +1,4 @@
-<div class="container" *ngIf="selectedCity">
+<div class="container" *ngIf="selectedCity && weatherDetails != undefined">
   <div class="jumbotron">
     <h1 class="city-jumbotron">{{ weatherDetails.query.results.channel.location.city }}</h1>
     <p class="description-jumbotron">{{ weatherDetails.query.results.channel.item.title }}</p>

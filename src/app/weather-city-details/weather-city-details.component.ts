@@ -18,7 +18,7 @@ export class WeatherCityDetailsComponent implements OnInit {
         this.WeatherService.getWeather(this.selectedCity).subscribe(response => {
             this.weatherDetails = response;
 
-            if (this.weatherDetails.query.results.channel.location.city == "Lodz") {
+            if (this.weatherDetails.query.results != null && this.weatherDetails.query.results.channel.location.city == "Lodz") {
                 this.weatherDetails.query.results.channel.location.city = "Łódź";
             }
         })
@@ -27,10 +27,6 @@ export class WeatherCityDetailsComponent implements OnInit {
             this.selectedCity = this.WeatherService.showSelectedCity();
             this.WeatherService.getWeather(this.selectedCity).subscribe(response => {
                 this.weatherDetails = response;
-
-                if (this.weatherDetails.query.results.channel.location.city == "Lodz") {
-                    this.weatherDetails.query.results.channel.location.city = "Łódź";
-                }
             });
         }, 10000);
     }
