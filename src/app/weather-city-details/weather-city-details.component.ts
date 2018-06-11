@@ -32,7 +32,7 @@ export class WeatherCityDetailsComponent implements OnInit {
                     this.weatherDetails.query.results.channel.location.city = "Łódź";
                 }
             });
-        }, 1000);
+        }, 10000);
     }
 
 }
