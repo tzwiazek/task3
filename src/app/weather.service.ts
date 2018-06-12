@@ -4,14 +4,30 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 interface WeatherResponse {
-
+  query: {
+      results: {
+          channel: {
+              location: {
+                  city: string
+              },
+              item: {
+                condition: {
+                  temp: number,
+                  text: string
+                },
+                description:string
+              }
+          }
+      }
+  }
 }
 
 @Injectable()
 export class WeatherService {
+  selectedCity:string;
   url;
   constructor(private http: HttpClient) {
-    this.url='http://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="';
+    this.url='http://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=';
   }
 
   cities = [
@@ -44,6 +60,14 @@ export class WeatherService {
   }
 
   getWeather(city: string): Observable<WeatherResponse>{
-    return this.http.get(this.url+city+"\")&format=json")
+      const mobileUrlBuilder = new URL(`${this.url}'${city}')`);
+      mobileUrlBuilder.searchParams.append('format', 'json');
+
+      return this.http.get<WeatherResponse>(mobileUrlBuilder.toString())
   }
+
+
+
+  getSelectedCity(city: any) {this.selectedCity = city.name;}
+  showSelectedCity() {return this.selectedCity;}
 }

@@ -1,0 +1,38 @@
+<div class="container" *ngIf="selectedCity && weatherDetails != undefined">
+  <div class="jumbotron">
+    <h1 class="city-jumbotron">{{ weatherDetails.query.results.channel.location.city }}</h1>
+    <p class="description-jumbotron">{{ weatherDetails.query.results.channel.item.title }}</p>
+    <p>
+      <span class="desc-jumbotron">{{ weatherDetails.query.results.channel.item.condition.text }}</span>
+    </p>
+  </div>
+  <div class="box-2 content_location">
+    <h3>Location</h3>
+    <p>City: {{ weatherDetails.query.results.channel.location.city }}</p>
+    <p>Country: {{ weatherDetails.query.results.channel.location.country }}</p>
+    <p>Region: {{ weatherDetails.query.results.channel.location.region }}</p>
+    <h3>Wind</h3>
+    <p>Chill: {{ weatherDetails.query.results.channel.wind.chill }}</p>
+    <p>Direction: {{ weatherDetails.query.results.channel.wind.direction }}</p>
+    <p>Speed: {{ weatherDetails.query.results.channel.wind.speed }}</p>
+    <h3>Atmosphere</h3>
+    <p>Humidity: {{ weatherDetails.query.results.channel.atmosphere.humidity }}</p>
+    <p>Pressure: {{ weatherDetails.query.results.channel.atmosphere.pressure }}</p>
+    <p>Rising: {{ weatherDetails.query.results.channel.atmosphere.rising }}</p>
+    <p>Visibility: {{ weatherDetails.query.results.channel.atmosphere.visibility }}</p>
+  </div>
+  <div class="box-2 content_forecast">
+    <h3>Tomorrow</h3>
+    <p>Date: {{ weatherDetails.query.results.channel.item.forecast[0].day+" "+weatherDetails.query.results.channel.item.forecast[0].date }}</p>
+    <p>High: {{ weatherDetails.query.results.channel.item.forecast[0].high }}</p>
+    <p>Low: {{ weatherDetails.query.results.channel.item.forecast[0].low }}</p>
+    <h3>{{ weatherDetails.query.results.channel.item.forecast[1].day }}</h3>
+    <p>Date: {{ weatherDetails.query.results.channel.item.forecast[1].day+" "+weatherDetails.query.results.channel.item.forecast[1].date }}</p>
+    <p>High: {{ weatherDetails.query.results.channel.item.forecast[1].high }}</p>
+    <p>Low: {{ weatherDetails.query.results.channel.item.forecast[1].low }}</p>
+    <h3>{{ weatherDetails.query.results.channel.item.forecast[2].day }}</h3>
+    <p>Date: {{ weatherDetails.query.results.channel.item.forecast[2].day+" "+weatherDetails.query.results.channel.item.forecast[2].date }}</p>
+    <p>High: {{ weatherDetails.query.results.channel.item.forecast[2].high }}</p>
+    <p>Low: {{ weatherDetails.query.results.channel.item.forecast[2].low }}</p>
+  </div>
+</div>
